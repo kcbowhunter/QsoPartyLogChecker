@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5D90A611-C033-466D-833E-A519E3085567}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>QsoPartyLogChecker</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_63_0;%(AdditionalIncludeDirectories);.\Tests;.</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_63_0;%(AdditionalIncludeDirectories);.\Tests;.</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_63_0;%(AdditionalIncludeDirectories);.\Tests;.</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllLocations.h" />
+    <ClInclude Include="basic.h" />
+    <ClInclude Include="BonusStationsPerBandPerMode.h" />
+    <ClInclude Include="BonusStationsPerMode.h" />
+    <ClInclude Include="Callsign.h" />
+    <ClInclude Include="CallsignToken.h" />
+    <ClInclude Include="Category.h" />
+    <ClInclude Include="CategoryMgr.h" />
+    <ClInclude Include="CheckDxccCountry.h" />
+    <ClInclude Include="Club.h" />
+    <ClInclude Include="ClubMgr.h" />
+    <ClInclude Include="Contest.h" />
+    <ClInclude Include="ContestConfig.h" />
+    <ClInclude Include="CustomReport.h" />
+    <ClInclude Include="CustomReportManager.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="DateToken.h" />
+    <ClInclude Include="DxccCountry.h" />
+    <ClInclude Include="DxccCountryManager.h" />
+    <ClInclude Include="FileUtils.h" />
+    <ClInclude Include="Freq.h" />
+    <ClInclude Include="FreqToken.h" />
+    <ClInclude Include="HtmlReporter.h" />
+    <ClInclude Include="HtmlUtils.h" />
+    <ClInclude Include="InstateLocation.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="LocationToken.h" />
+    <ClInclude Include="Mode.h" />
+    <ClInclude Include="ModeToken.h" />
+    <ClInclude Include="Multipliers.h" />
+    <ClInclude Include="MultipliersMgr.h" />
+    <ClInclude Include="MultipliersPerMode.h" />
+    <ClInclude Include="NameToken.h" />
+    <ClInclude Include="Qso.h" />
+    <ClInclude Include="QsoError.h" />
+    <ClInclude Include="QsoInfo.h" />
+    <ClInclude Include="QsoItem.h" />
+    <ClInclude Include="QsoName.h" />
+    <ClInclude Include="QsoTime.h" />
+    <ClInclude Include="QsoTokenType.h" />
+    <ClInclude Include="QsoWarning.h" />
+    <ClInclude Include="ReportWriter.h" />
+    <ClInclude Include="Rst.h" />
+    <ClInclude Include="RstToken.h" />
+    <ClInclude Include="SerialNumber.h" />
+    <ClInclude Include="SerialNumberToken.h" />
+    <ClInclude Include="Station.h" />
+    <ClInclude Include="StationResults.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Tests\Ai4wwTests.h" />
+    <ClInclude Include="Tests\CallsignCopyErrorTests.h" />
+    <ClInclude Include="Tests\CallsignTests.h" />
+    <ClInclude Include="Tests\CategoryTests.h" />
+    <ClInclude Include="Tests\ContestConfigTests.h" />
+    <ClInclude Include="Tests\MiniContest.h" />
+    <ClInclude Include="Tests\N6MU01.h" />
+    <ClInclude Include="Tests\QsoTests.h" />
+    <ClInclude Include="Tests\StationTests.h" />
+    <ClInclude Include="Tests\StringUtilsTests.h" />
+    <ClInclude Include="Tests\TestBase.h" />
+    <ClInclude Include="Tests\TestError.h" />
+    <ClInclude Include="Tests\TestRunner.h" />
+    <ClInclude Include="TextFile.h" />
+    <ClInclude Include="TimeToken.h" />
+    <ClInclude Include="Win32Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AllLocations.cpp" />
+    <ClCompile Include="basic.cpp" />
+    <ClCompile Include="BonusStationsPerBandPerMode.cpp" />
+    <ClCompile Include="BonusStationsPerMode.cpp" />
+    <ClCompile Include="Callsign.cpp" />
+    <ClCompile Include="CallsignToken.cpp" />
+    <ClCompile Include="Category.cpp" />
+    <ClCompile Include="CategoryMgr.cpp" />
+    <ClCompile Include="CheckDxccCountry.cpp" />
+    <ClCompile Include="Club.cpp" />
+    <ClCompile Include="ClubMgr.cpp" />
+    <ClCompile Include="Contest.cpp" />
+    <ClCompile Include="ContestConfig.cpp" />
+    <ClCompile Include="CustomReport.cpp" />
+    <ClCompile Include="CustomReportManager.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="DateToken.cpp" />
+    <ClCompile Include="DxccCountry.cpp" />
+    <ClCompile Include="DxccCountryManager.cpp" />
+    <ClCompile Include="FileUtils.cpp" />
+    <ClCompile Include="Freq.cpp" />
+    <ClCompile Include="FreqToken.cpp" />
+    <ClCompile Include="HtmlReporter.cpp" />
+    <ClCompile Include="HtmlUtils.cpp" />
+    <ClCompile Include="InstateLocation.cpp" />
+    <ClCompile Include="Location.cpp" />
+    <ClCompile Include="LocationToken.cpp" />
+    <ClCompile Include="Mode.cpp" />
+    <ClCompile Include="ModeToken.cpp" />
+    <ClCompile Include="Multipliers.cpp" />
+    <ClCompile Include="MultipliersMgr.cpp" />
+    <ClCompile Include="MultipliersPerMode.cpp" />
+    <ClCompile Include="NameToken.cpp" />
+    <ClCompile Include="Qso.cpp" />
+    <ClCompile Include="QsoError.cpp" />
+    <ClCompile Include="QsoInfo.cpp" />
+    <ClCompile Include="QsoItem.cpp" />
+    <ClCompile Include="QsoName.cpp" />
+    <ClCompile Include="QsoPartyLogChecker.cpp" />
+    <ClCompile Include="QsoTime.cpp" />
+    <ClCompile Include="QsoTokenType.cpp" />
+    <ClCompile Include="QsoWarning.cpp" />
+    <ClCompile Include="ReportWriter.cpp" />
+    <ClCompile Include="Rst.cpp" />
+    <ClCompile Include="RstToken.cpp" />
+    <ClCompile Include="SerialNumber.cpp" />
+    <ClCompile Include="SerialNumberToken.cpp" />
+    <ClCompile Include="Station.cpp" />
+    <ClCompile Include="StationResults.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="Tests\Ai4wwTests.cpp" />
+    <ClCompile Include="Tests\CallsignCopyErrorTests.cpp" />
+    <ClCompile Include="Tests\CallsignTests.cpp" />
+    <ClCompile Include="Tests\CategoryTests.cpp" />
+    <ClCompile Include="Tests\ContestConfigTests.cpp" />
+    <ClCompile Include="Tests\MiniContest.cpp" />
+    <ClCompile Include="Tests\N6MU01.cpp" />
+    <ClCompile Include="Tests\QsoTests.cpp" />
+    <ClCompile Include="Tests\StationTests.cpp" />
+    <ClCompile Include="Tests\StringUtilsTests.cpp" />
+    <ClCompile Include="Tests\TestBase.cpp" />
+    <ClCompile Include="Tests\TestError.cpp" />
+    <ClCompile Include="Tests\TestRunner.cpp" />
+    <ClCompile Include="TextFile.cpp" />
+    <ClCompile Include="TimeToken.cpp" />
+    <ClCompile Include="Win32Utils.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
