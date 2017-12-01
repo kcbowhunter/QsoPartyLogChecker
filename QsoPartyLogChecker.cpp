@@ -190,7 +190,6 @@ int _tmain(int argc, _TCHAR* argv[])
    double time = (endTime - startTime) * 1000.0;
    printf("\nTotal time for QsoPartyLogChecker: %7.2f ms\n", time);
 
-
    return 0;
 }
 

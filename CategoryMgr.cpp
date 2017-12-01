@@ -200,7 +200,7 @@ int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, b
 	bool dump = true;
 	if (dump)
 	{
-		printf("CategoryMgr::DetermineStationCategory Enter -> Station %s\n", callsign.c_str());
+		printf("\nCategoryMgr::DetermineStationCategory Enter -> Station %s\n", callsign.c_str());
 	}
 
    // Is it a checklog?
@@ -246,7 +246,7 @@ int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, b
       {
 		  const string& title = cat->m_title;
 		  if (dump)
-     		  printf("Station %s matches category %s\n", callsign.c_str(), title.c_str());
+     		  printf("\tStation %s matches category %s\n", callsign.c_str(), title.c_str());
 
 		  if (assignCategoryToStation)
              s->SetCategory(cat);

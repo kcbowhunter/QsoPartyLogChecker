@@ -1599,19 +1599,27 @@ StationCat Station::ParseStationCategory(const string& tokenArg)
 {
 //   enum StationCat { eUnknownStationCat, eAnyStationCat, eFixedStationCat, eMobileStationCat, ePortableStationCat };
 
-   string token(tokenArg);
-   StringUtils::ToLower(token);
+   string tokenArgLower(tokenArg);
+   StringUtils::ToLower(tokenArgLower);
+
+   list<string> tokens;
+   StringUtils::Split(tokens, tokenArgLower);
 
    if (m_stationCategoryMap.empty())
       SetupStaticStationCategoryMap();
 
-   auto iter = m_stationCategoryMap.find(token);
-   if (iter == m_stationCategoryMap.end())
-      return eUnknownStationCat;
+   for (string token : tokens)
+   {
+	   auto iter = m_stationCategoryMap.find(token);
+	   if (iter != m_stationCategoryMap.end())
+	   {
+		   StationCat cat = (*iter).second;
+		   return cat;
+	   }
+   }
 
-   StationCat cat = (*iter).second;
+   return eUnknownStationCat;
 
-   return cat;
 }
 
 // Convert the token to a PowerCat

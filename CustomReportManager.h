@@ -18,8 +18,11 @@ public:
 	// Create custom reports
 	bool CreateCustomReports(const string& configFilesFolder, list<string>& customReportConfigFilenames);
 
-	// Generate the custom reports in the results folder
+	// Generate custom reports for all stations in the results folder
 	bool GenerateReportsForAllStations(const string& resultsFolder, vector<Station*>& stations);
+
+	// Generate the custom reports in the results folder
+	bool GenerateCustomReports(const string& resultsFolder, vector<Station*>& stations);
 
 	// Determine the categories for each station in all custom reports
 	void DetermineStationCategories(vector<Station*>& stations);

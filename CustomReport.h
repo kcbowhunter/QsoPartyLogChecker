@@ -26,6 +26,8 @@ public:
 
 	void DetermineStationCategories(vector<Station*>& stations);
 
+	CategoryMgr *GetCategoryMgr() { return m_categoryMgr; }
+
 private:
 	std::map<string, string> m_keyValuePairs;
 	vector<string> m_columnData;

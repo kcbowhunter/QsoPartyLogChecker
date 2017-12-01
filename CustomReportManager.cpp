@@ -2,6 +2,8 @@
 #include "CustomReportManager.h"
 #include "CustomReport.h"
 #include "TextFile.h"
+#include "CategoryMgr.h"
+#include "Category.h"
 
 CustomReportManager::CustomReportManager()
 {
@@ -94,6 +96,40 @@ bool CustomReportManager::GenerateReportsForAllStations(const string& resultsFol
 
 	return true;
 }
+
+// Generate the custom reports in the results folder
+bool CustomReportManager::GenerateCustomReports(const string& resultsFolder, vector<Station*>& stations)
+{
+	for (CustomReport* customReport : m_customReports)
+	{
+		TextFile file;
+		file.AddLine("Custom Report");
+		file.AddLine(" ");
+
+		CategoryMgr *catMgr = customReport->GetCategoryMgr();
+
+		// Get a copy of the list of categories
+		list<Category*> categories;
+		catMgr->GetCategories(categories);
+
+		for (Category* category : categories)
+		{
+			list<Station*>& catStations = category->m_stations;
+
+			// Convert the list of station ptrs to a vector of station ptrs
+			vector<Station*> stationVector(std::begin(catStations), std::end(catStations));
+			customReport->GenerateReport(stationVector, file);
+		}
+
+		string reportFileName = customReport->GetFileName();
+		string fileName = resultsFolder + reportFileName;
+
+		file.Write(fileName);
+	}
+
+	return true;
+}
+
 
 
 // Determine the categories for each station in all custom reports

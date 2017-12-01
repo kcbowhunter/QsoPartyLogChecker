@@ -760,6 +760,7 @@ void Contest::GenerateReports()
    // Generate Custom Reports
    CustomReportManager *customReportManager = m_contestConfig->GetCustomReportManager();
    customReportManager->GenerateReportsForAllStations(m_resultsFolder, m_stations);
+   customReportManager->GenerateCustomReports(m_resultsFolder, m_stations);
 
 //   printf("Contest::GenerateReports After 1x1StationCounts\n");
    double finish = omp_get_wtime();
