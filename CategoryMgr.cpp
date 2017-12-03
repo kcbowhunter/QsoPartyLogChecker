@@ -151,12 +151,12 @@ void CategoryMgr::CreateMOQPCategories()
    m_categories.push_back(mo_fixed_multiop);
 }
 
-void CategoryMgr::DetermineStationCategories(vector<Station*>& stations, bool useCategoryAbbrevs, bool assignCategoryToStation)
+void CategoryMgr::DetermineStationCategories(vector<Station*>& stations, bool useCategoryAbbrevs, bool assignCategoryToStation, bool matchFirstCategory)
 {
    int num = 0;
    for (Station *s : stations)
    {
-      num = DetermineStationCategory(s, useCategoryAbbrevs, assignCategoryToStation);
+      num = DetermineStationCategory(s, useCategoryAbbrevs, assignCategoryToStation, matchFirstCategory);
    }
 
    bool display = false;
@@ -194,7 +194,7 @@ void CategoryMgr::DetermineStationCategories(vector<Station*>& stations, bool us
 }
 
 // Return the number of categories the station matched
-int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, bool assignCategoryToStation)
+int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, bool assignCategoryToStation, bool matchFirstCategory)
 {
 	string callsign = s->StationCallsign();
 	bool dump = true;
@@ -253,6 +253,9 @@ int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, b
 
          cat->m_stations.push_back(s);
          matchingCategories.push_back(cat);
+
+		 if (matchFirstCategory)
+			 break;
       }
    }
 

@@ -499,11 +499,12 @@ bool Contest::ProcessLogs(vector<string>& logFileNames)
 
 	bool useCategoryAbbrevs = true;
 	bool assignCategoryToStation = true;
-	m_categoryMgr->DetermineStationCategories(m_stations, useCategoryAbbrevs, assignCategoryToStation);
+	bool matchFirstCategory = false;
+	m_categoryMgr->DetermineStationCategories(m_stations, useCategoryAbbrevs, assignCategoryToStation, matchFirstCategory);
 
 	if (m_categoryMgr2 != nullptr)
 	{
-		m_categoryMgr2->DetermineStationCategories(m_stations, useCategoryAbbrevs, assignCategoryToStation);
+		m_categoryMgr2->DetermineStationCategories(m_stations, useCategoryAbbrevs, assignCategoryToStation, matchFirstCategory);
 	}
 
 	// Determine categories for custom reports

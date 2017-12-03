@@ -10,7 +10,7 @@ public:
    CategoryMgr();
    virtual ~CategoryMgr();
 
-   void DetermineStationCategories(vector<Station*>& stations, bool useCategoryAbbrevs, bool assignCategoryToStation);
+   void DetermineStationCategories(vector<Station*>& stations, bool useCategoryAbbrevs, bool assignCategoryToStation, bool matchFirstCategory);
 
    // Get a copy of the list of categories
    void GetCategories(list<Category*>& categories);
@@ -31,7 +31,7 @@ private:
    void SetupMobileRoverEquivalentFlag();
 
    // Return the number of categories the station matched
-   int DetermineStationCategory(Station *s, bool useCategoryAbbrevs, bool assignCategoryToStation);
+   int DetermineStationCategory(Station *s, bool useCategoryAbbrevs, bool assignCategoryToStation, bool matchFirstCategory);
 
    Category* FindCategoryByAbbrev(const string& categoryAbbrev);
 

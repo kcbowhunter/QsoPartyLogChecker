@@ -191,8 +191,9 @@ void CustomReport::DetermineStationCategories(vector<Station*>& stations)
 {
 	bool useCategoryAbbrevs = false;
 	bool assignCategoryToStation = false;
+	bool matchFirstCategory = true;
 
-	m_categoryMgr->DetermineStationCategories(stations, useCategoryAbbrevs, assignCategoryToStation);
+	m_categoryMgr->DetermineStationCategories(stations, useCategoryAbbrevs, assignCategoryToStation, matchFirstCategory);
 
 }
 
