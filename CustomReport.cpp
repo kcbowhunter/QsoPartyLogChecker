@@ -128,7 +128,7 @@ bool CustomReport::ProcessCategories(const string& categoriesFileName)
 
 bool SortStationByScore(Station* s1, Station* s2)
 {
-	return s1->Score() < s2->Score();
+	return s1->Score() > s2->Score();
 }
 
 
@@ -163,7 +163,7 @@ bool CustomReport::GenerateReport(vector<Station*>& stations, TextFile& file)
 	line.clear();
 
 	string value;
-	for (Station *s : stations)
+	for (Station *s : stations2)
 	{
 		line.clear();
 		for (i = 0; i < count; ++i)

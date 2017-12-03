@@ -5,10 +5,11 @@
 #include "StringUtils.h"
 #include "CategoryMgr.h"
 
+
 Category::Category(CategoryMgr *catMgr)
    :
    m_country("usa"),
-   m_stationCat(eFixedStationCat),
+   m_stationCat(eAnyStationCat),
    m_powerCat(eAnyPowerCat),
    m_stationOperatorCat(eAnyOperatorCat),
    m_stationModeCat(eAnyModeCat),
@@ -165,10 +166,13 @@ bool Category::AssignData(const string& keyArg, const string& value)
       {
          ;
       }
-      else if (m_country == "canada" || m_country == "dx" || m_country == "usacan" || m_country == "any")
+	  else if (m_country == "any")
+	  {
+		  ; //		  m_instate = eUnspecifiedBool;
+	  }
+      else if (m_country == "canada" || m_country == "dx" || m_country == "usacan")
       {
-//         m_instate = false;
-		  m_instate = eFalseBool;
+		  ; // m_instate = eFalseBool;
       }
       else
       {

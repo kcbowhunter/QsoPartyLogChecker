@@ -4,6 +4,7 @@
 #include "TextFile.h"
 #include "CategoryMgr.h"
 #include "Category.h"
+#include "Station.h"
 
 CustomReportManager::CustomReportManager()
 {
@@ -100,6 +101,9 @@ bool CustomReportManager::GenerateReportsForAllStations(const string& resultsFol
 // Generate the custom reports in the results folder
 bool CustomReportManager::GenerateCustomReports(const string& resultsFolder, vector<Station*>& stations)
 {
+	// Create a set of Station* to keep track of stations that are not in any category
+	set<Station*> allStations(stations.begin(), stations.end());
+
 	for (CustomReport* customReport : m_customReports)
 	{
 		TextFile file;
@@ -111,14 +115,38 @@ bool CustomReportManager::GenerateCustomReports(const string& resultsFolder, vec
 		// Get a copy of the list of categories
 		list<Category*> categories;
 		catMgr->GetCategories(categories);
+		string categoryTitle;
 
 		for (Category* category : categories)
 		{
 			list<Station*>& catStations = category->m_stations;
 
+			if (catStations.empty())
+				continue;
+
+			for (Station *s : catStations)
+				allStations.erase(s);
+
+			categoryTitle = category->m_title;
+			if (!categoryTitle.empty())
+				file.AddLine(categoryTitle);
+
 			// Convert the list of station ptrs to a vector of station ptrs
 			vector<Station*> stationVector(std::begin(catStations), std::end(catStations));
 			customReport->GenerateReport(stationVector, file);
+
+			file.AddLine(" ");
+		}
+
+		if (!allStations.empty())
+		{
+			file.AddLine("The following stations are not found in any category:");
+			for (Station *s : allStations)
+			{
+				file.AddLine(s->StationCallsign());
+			}
+
+			file.AddLine(" ");
 		}
 
 		string reportFileName = customReport->GetFileName();
