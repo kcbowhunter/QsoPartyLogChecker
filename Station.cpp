@@ -79,7 +79,8 @@ Station::Station(Contest *contest)
 	m_pureDigitalScore(0),
 	m_digitalMultipliers(0),
 	m_txCat(eSingleTxCat),
-	m_txCatString("ONE")
+	m_txCatString("ONE"),
+	m_isBonusStation(false)
 {
    if (contest != nullptr)
    {

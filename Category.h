@@ -40,6 +40,12 @@ public:
    // Some categories apply to both instate and out of state stations
    TernaryBool m_instate;
 
+   // Bonus Station
+   TernaryBool m_bonusStation;
+
+   // Check Log
+   TernaryBool m_checkLog;
+
    // Category abbreviation
    string m_catabbrev;
 

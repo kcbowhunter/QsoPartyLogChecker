@@ -493,6 +493,17 @@ bool Contest::ProcessLogs(vector<string>& logFileNames)
 		for (string bonusStation : m_bonusStations)
 		{
 			StringUtils::ToLower(bonusStation);
+
+			Station *s = GetStation(bonusStation);
+			if (s != nullptr)
+			{
+				s->SetBonusStation(true);
+			}
+			else
+			{
+				printf("Error: Bonus Station %s not found\n", bonusStation.c_str());
+			}
+
 			CalculateBonusPoints(bonusStation, m_bonusStationPoints);
 		}
 	}

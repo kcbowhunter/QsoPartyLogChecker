@@ -15,6 +15,8 @@ Category::Category(CategoryMgr *catMgr)
    m_stationModeCat(eAnyModeCat),
    m_txCat(eUnknownTxCat),
    m_instate(eUnspecifiedBool),
+   m_bonusStation(eUnspecifiedBool),
+   m_checkLog(eUnspecifiedBool),
    m_title(),
    m_secondaryCategory(false),
    m_catabbrev(""),
@@ -55,6 +57,20 @@ bool Category::Match(Station* s)
    {
 	   bool temp = m_instate == eTrueBool;
 	   if (temp != s->InState())
+		   return false;
+   }
+
+   if (m_bonusStation != eUnspecifiedBool)
+   {
+	   bool temp = m_bonusStation == eTrueBool;
+	   if (temp != s->IsBonusStation())
+		   return false;
+   }
+
+   if (m_checkLog != eUnspecifiedBool)
+   {
+	   bool temp = m_checkLog == eTrueBool;
+	   if (temp != s->CheckLog())
 		   return false;
    }
 
@@ -183,7 +199,7 @@ bool Category::AssignData(const string& keyArg, const string& value)
    }
    else if (key == "instate")
    {
-	   // InState can only be specified as true or false in the config file
+	   // InState can only be specified as true or false in the Category config file
 	   // m_instate defaults to unspecified
 	   bool tempBool = false;
       status = StringUtils::ParseBoolean(tempBool, value);
@@ -194,6 +210,30 @@ bool Category::AssignData(const string& keyArg, const string& value)
          return false;
       }
 	  m_instate = tempBool ? eTrueBool : eFalseBool;
+   }
+   else if(key == "bonusstation")
+   {
+	   bool tempBool = false;
+	   status = StringUtils::ParseBoolean(tempBool, value);
+	   if (!status)
+	   {
+		   const char* msg = value.empty() ? "<Missing>" : value.c_str();
+		   printf("Error in %s Category Data\n   BonusStation = %s not recognized\n\n", titleMsg, msg);
+		   return false;
+	   }
+	   m_bonusStation = tempBool ? eTrueBool : eFalseBool;
+   }
+   else if (key == "checklog")
+   {
+	   bool tempBool = false;
+	   status = StringUtils::ParseBoolean(tempBool, value);
+	   if (!status)
+	   {
+		   const char* msg = value.empty() ? "<Missing>" : value.c_str();
+		   printf("Error in %s Category Data\n   CheckLog = %s not recognized\n\n", titleMsg, msg);
+		   return false;
+	   }
+	   m_checkLog = tempBool ? eTrueBool : eFalseBool;
    }
    else if (key == "power")
    {
