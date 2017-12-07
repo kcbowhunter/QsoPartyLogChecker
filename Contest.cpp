@@ -195,6 +195,12 @@ bool Contest::ProcessConfigData(ContestConfig *config)
    config->GetCountyAbbrevs(m_countyAbbrevs);
    config->GetCountyMap(m_countyMap);
 
+   if (config->GetBonusCountyPoints() > 0)
+   {
+	   set<string> bonusCounties = config->GetBonusCounties();
+	   status = CheckBonusCounties(m_countyAbbrevs, bonusCounties);
+   }
+
    m_dxccCountryManager = config->GetDxccCountryManager();
    m_instateDxccMults   = config->InstateDxccMults();
 
@@ -507,6 +513,19 @@ bool Contest::ProcessLogs(vector<string>& logFileNames)
 			CalculateBonusPoints(bonusStation, m_bonusStationPoints);
 		}
 	}
+
+	// Calculate the county bonus points for each station
+	ContestConfig *contestConfig = GetContestConfig();
+	int countyBonusPoints = contestConfig->GetBonusCountyPoints();
+	if (countyBonusPoints > 0)
+	{
+		const set<string>& bonusCounties = contestConfig->GetBonusCounties();
+		for (Station *s : m_stations)
+		{
+			s->CalculateBonusCountyPoints(bonusCounties, countyBonusPoints);
+		}
+	}
+
 
 	bool useCategoryAbbrevs = true;
 	bool assignCategoryToStation = true;
@@ -1250,4 +1269,27 @@ int Contest::GetInStateWorksOutOfStatePointsScaler() const
 bool Contest::GetBonusStationPointsPerBandPerMode() const 
 { 
 	return m_contestConfig->GetBonusStationPointsPerBandPerMode(); 
+}
+
+// Check that the bonus counties supplied in the main config file are actually county abbreviations provided 
+// in the contest counties file
+bool Contest::CheckBonusCounties(const set<string>& countyAbbrevs, const set<string>& bonusCounties)
+{
+	bool status = true;
+	int errorCount = 0;
+
+	for (const string& bonusCounty : bonusCounties)
+	{
+		auto iter = countyAbbrevs.find(bonusCounty);
+		if (iter == countyAbbrevs.end())
+		{
+			string temp(bonusCounty);
+			StringUtils::ToUpper(temp);
+			printf("Error: Bonus County %s is not a valid county abbreviation\n", temp.c_str());
+			++errorCount;
+			status = false;
+		}
+	}
+
+	return status;
 }

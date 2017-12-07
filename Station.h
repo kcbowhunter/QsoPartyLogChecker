@@ -111,6 +111,7 @@ public:
 	int TotalMultipliers() const;
 	int QsoPoints() const { return m_qsoPoints; }
 	int BonusPoints() const { return m_bonusPoints; }
+	int BonusCountyPoints() const { return m_bonusCountyPoints; }
 
 	//   int Score() const { return MultiplierPoints() * QsoPoints() + BonusPoints(); }
 	int Score() const;
@@ -118,6 +119,9 @@ public:
 	string Country() const { return m_country; }
 	string State() const { return m_state; }
 	string Province() const { return m_province; }
+
+	// Calculate Bonus County Points for valid qso's
+	int CalculateBonusCountyPoints(const set<string>& bonusCounties, int bonusCountyPoints);
 
 	// Number of ignored qsos because the station mode is different than the qso mode
 	int GetIgnoredModeQsos() const { return m_ignoredModeQsos; }
@@ -281,6 +285,9 @@ private:
 
    // Number of points from working bonus stations
    int m_bonusPoints;
+
+   // Number of points from working bonus counties
+   int m_bonusCountyPoints;
 
    // True if the bonus station was worked
    bool m_workedBonusStation;

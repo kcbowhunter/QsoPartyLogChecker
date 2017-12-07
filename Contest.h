@@ -65,6 +65,10 @@ public:
 
    bool GetBonusStationMultipliers() const {return m_bonusStationMultipliers;}
 
+   // Check that the bonus counties supplied in the main config file are actually county abbreviations provided 
+   // in the contest counties file
+   bool CheckBonusCounties(const set<string>& countyAbbrevs, const set<string>& bonusCounties);
+
    // Callsign of bonus stations
    list<string> GetBonusStations() const { return m_bonusStations; }
 

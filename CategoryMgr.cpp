@@ -197,7 +197,7 @@ void CategoryMgr::DetermineStationCategories(vector<Station*>& stations, bool us
 int CategoryMgr::DetermineStationCategory(Station *s, bool useCategoryAbbrevs, bool assignCategoryToStation, bool matchFirstCategory)
 {
 	string callsign = s->StationCallsign();
-	bool dump = true;
+	bool dump = false;
 	if (dump)
 	{
 		printf("\nCategoryMgr::DetermineStationCategory Enter -> Station %s\n", callsign.c_str());

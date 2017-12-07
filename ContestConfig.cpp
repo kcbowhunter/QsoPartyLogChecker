@@ -43,7 +43,9 @@ ContestConfig::ContestConfig()
    m_validateQsos(true),
    m_mobileCountiesActivatedAreMultipliers(false),
    m_dxMultiplier(true),
-   m_customReportManager(new CustomReportManager())
+   m_customReportManager(new CustomReportManager()),
+   m_bonusCountyPoints(0),
+   m_bonusCounties()
    {
 	   SetupDataMap();
    }
@@ -160,6 +162,9 @@ bool ContestConfig::ProcessScoring()
 
       string keyLower(key);
       StringUtils::ToLower(keyLower);
+
+	  string valueLower(value);
+	  StringUtils::ToLower(valueLower);
 
       if (keyLower == "cwpoints")
       {
@@ -290,12 +295,28 @@ bool ContestConfig::ProcessScoring()
 	  {
 		  StringUtils::ParseBoolean(m_dxMultiplier, value);
 	  }
+	  else if (boost::iequals(keyLower, "bonuscountypoints"))
+	  {
+		  if (StringUtils::IsInteger(value) && !value.empty())
+		  {
+			  m_bonusCountyPoints = atoi(value.c_str());
+		  }
+		  else
+		  {
+			  printf("Error in BonusCountyPoints: %s\n", value.c_str());
+			  ++errorCount;
+		  }
+	  }
+	  else if (boost::iequals(keyLower, "bonuscounty"))
+	  {
+		  m_bonusCounties.insert(valueLower);
+	  }
 	  else
       {
 		  ++errorCount;
          printf("Error in %s Section\n   Unknown key value pair '%s' = '%s'\n",
             section.c_str(), key.c_str(), value.c_str());
-         printf("   Expected:\n      CwPoints=n or DigitalPoints=n or PhonePoints=n etc\n\n");
+//         printf("   Expected:\n      CwPoints=n or DigitalPoints=n or PhonePoints=n etc\n\n");
       }
    }
 

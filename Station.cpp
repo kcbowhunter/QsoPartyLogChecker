@@ -47,6 +47,7 @@ Station::Station(Contest *contest)
 	m_country("usa"),
 	m_qsoPoints(0),
 	m_bonusPoints(0),
+	m_bonusCountyPoints(0),
 	m_qsos(),
 	m_showme(false),
 	m_category(nullptr),
@@ -395,6 +396,26 @@ bool Station::ParseStringCreateQso(string& str, bool& endoflog, vector<QsoTokenT
    }
 	else if (key.compare("callsign") == 0)
 	{
+		// Is there a trailing slash?
+		if (!value.empty())
+		{
+			size_t len = value.length();
+			if (len > 3)
+			{
+				size_t pos = value.find('/');
+				if (pos != string::npos)
+				{
+					string left = value.substr(0, pos);
+					string right = value.substr(pos + 1, len - 1);
+
+					if (left.find('/') == string::npos && right.find('/') == string::npos)
+					{
+						value = left.length() > right.length() ? left : right;
+					}
+				}
+			}
+		}
+
 		m_callsign = value;
 		m_callsignLower = value;
 		StringUtils::ToLower(m_callsignLower);
@@ -786,6 +807,12 @@ bool Station::WriteLogReport(const string& filename)
    if (m_bonusPoints > 0)
    {
 	   sprintf_s(buffer, SIZE, "   Bonus Points      : %d", m_bonusPoints);
+	   file.AddLine(buffer);
+   }
+
+   if (m_bonusCountyPoints > 0)
+   {
+	   sprintf_s(buffer, SIZE, "   Bonus County Points      : %d", m_bonusCountyPoints);
 	   file.AddLine(buffer);
    }
 
@@ -1529,6 +1556,7 @@ void Station::CalculateBonusPoints(const string& bonusStation, const int bonusSt
          break;
       }
    }
+
 }
 
 // This method is used by 1x1 stations to update the letter in stations worked
@@ -2104,11 +2132,11 @@ int Station::Score() const
 	{
 		double powerMultiplier = PowerMultiplier();
 		double scorex = TotalMultipliers() * QsoPoints() * powerMultiplier;
-		int score = (int)scorex + BonusPoints();
+		int score = (int)scorex + BonusPoints() + BonusCountyPoints();
 		return score;
 	}
 
-	return TotalMultipliers() * QsoPoints() + BonusPoints(); 
+	return TotalMultipliers() * QsoPoints() + BonusPoints() + BonusCountyPoints();
    }
 
 
@@ -2336,4 +2364,38 @@ string Station::GetStationModeString()
 	}
 
 	return string("?");
+}
+
+// Calculate Bonus County Points for valid qso's
+int Station::CalculateBonusCountyPoints(const set<string>& bonusCounties, int bonusCountyPoints)
+{
+	int points = 0;
+	int count = 0;
+	string value;
+
+	for (Qso& qso : m_qsos)
+	{
+		if (qso.IsIgnored())
+			continue;
+
+		if (!qso.ValidQso())
+			continue;
+
+		const Location *location = qso.GetTheirLocation();
+
+		if (location != nullptr)
+		{
+			value = location->GetValue();
+			StringUtils::ToLower(value);
+			auto iter = bonusCounties.find(value);
+			if (iter != bonusCounties.end())
+			{
+				++count;
+			}
+		}
+	}
+
+	points = count * bonusCountyPoints;
+	m_bonusCountyPoints = points;
+	return points;
 }
