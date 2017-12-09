@@ -29,7 +29,7 @@ void ShowNumberOfThreads();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-   const string Version("1.2.0 Build 2017-Nov-28-1");
+   const string Version("1.3.0 Build 2017-Dec-09-1");
    printf("Hello QsoPartyLogChecker!\n");
    printf("   Version %s\n", Version.c_str());
    printf("   Comments, questions, bug reports to Ron ad0dx@yahoo.com\n");
